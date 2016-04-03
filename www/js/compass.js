@@ -31,6 +31,8 @@ function setupCompass() {
 
 }
 
+var currentBearing = null;
+
 function updateLocation(position) {
 	console.log("Update location");
 
@@ -44,6 +46,7 @@ function updateLocation(position) {
 	var bearing = calculateBearing(currentLatitude, currentLongitude, targetLocation.latitude, targetLocation.longitude);
 
 	console.log(bearing);
+	currentBearing = bearing;
 
 	//update display
 	$("#current_latitude").html("Latitude: " + currentLatitude);
@@ -55,7 +58,31 @@ function updateCompass(heading) {
 	var magneticHeading = heading.magneticHeading;
 	console.log(heading);
 	console.log(magneticHeading);
-	$("#compass_bearing").html("Bearing: " + magneticHeading);
+	$("#compass_bearing").html("Heading: " + Math.floor(magneticHeading));
+
+	//rotate image.
+	if (currentBearing !== null) {
+		var resultAngle = calculateRelativeAngle(currentBearing, magneticHeading);
+		if (resultAngle !== null) {
+			$("#compass").rotate(resultAngle);
+		}	
+	}	
+}
+
+function calculateRelativeAngle(targetBearing, compassHeading) {
+	var delta =  targetBearing - compassHeading;
+	var relativeAngle = null;
+
+	//determine relative angle in degrees.
+	//positive delta = rotate right.
+	//negative delta = rotate left.
+	if (delta < 0) {
+		relativeAngle = 360 - delta;
+	} else {
+		relativeAngle = delta;
+	}
+
+	return relativeAngle;
 }
 
 function compassError(error) {
