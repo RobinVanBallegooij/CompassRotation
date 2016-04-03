@@ -55,7 +55,7 @@ function updateCompass(heading) {
 	var magneticHeading = heading.magneticHeading;
 	console.log(heading);
 	console.log(magneticHeading);
-	$("#compass_bearing").html("Bearing: " + bearing);
+	$("#compass_bearing").html("Bearing: " + magneticHeading);
 }
 
 function compassError(error) {
@@ -63,6 +63,8 @@ function compassError(error) {
 	console.log(error.code);
 }
 
+
+// CALCULATIONS.
 function calculateBearing(lat1,lng1,lat2,lng2) {
         var dLon = (lng2-lng1);
         var y = Math.sin(dLon) * Math.cos(lat2);
