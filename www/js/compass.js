@@ -55,6 +55,7 @@ function updateCompass(heading) {
 	var magneticHeading = heading.magneticHeading;
 	console.log(heading);
 	console.log(magneticHeading);
+	$("#compass_bearing").html("Bearing: " + bearing);
 }
 
 function compassError(error) {
