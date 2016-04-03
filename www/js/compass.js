@@ -77,7 +77,7 @@ function calculateRelativeAngle(targetBearing, compassHeading) {
 	//positive delta = rotate right.
 	//negative delta = rotate left.
 	if (delta < 0) {
-		relativeAngle = 360 - delta;
+		relativeAngle = 360 + delta;
 	} else {
 		relativeAngle = delta;
 	}
