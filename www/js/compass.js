@@ -52,6 +52,9 @@ function updateLocation(position) {
 	$("#current_latitude").html("Latitude: " + currentLatitude);
 	$("#current_longitude").html("Longitude: " + currentLongitude);
 	$("#bearing").html("Bearing: " + bearing);
+
+	$("#target_latitude").html("Latitude: " + targetLocation.latitude);
+	$("#target_longitude").html("Longitude: " + targetLocation.longitude);
 }
 
 function updateCompass(heading) {
