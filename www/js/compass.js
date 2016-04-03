@@ -20,6 +20,11 @@ function setupCompass() {
 	navigator.geolocation.getCurrentPosition(updateLocation);
 	var watchId = navigator.geolocation.watchPosition(updateLocation);
 
+	$("#button_update").on("click", function() {
+		console.log("update");
+		navigator.geolocation.getCurrentPosition(updateLocation);
+	});
+
 }
 
 function updateLocation(position) {
