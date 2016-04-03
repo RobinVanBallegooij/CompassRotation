@@ -20,7 +20,6 @@ function setupCompass() {
 	navigator.geolocation.getCurrentPosition(updateLocation);
 	var watchId = navigator.geolocation.watchPosition(updateLocation);
 
-	var targetLocation = { latitude: 51.8048944, longitude: 5.4339814 };
 }
 
 function updateLocation(position) {
@@ -29,9 +28,13 @@ function updateLocation(position) {
 	var currentLatitude = position.coords.latitude;
 	var currentLongitude = position.coords.longitude;
 
+	var targetLocation = { latitude: 51.8048944, longitude: 5.4339814 };
+
 	var currentLocation = { latitude: currentLatitude, longitude: currentLongitude };
 
 	var bearing = calculateBearing(currentLatitude, currentLongitude, targetLocation.latitude, targetLocation.longitude);
+
+	console.log(bearing);
 
 	//update display
 	$("#current_latitude").html("Latitude: " + currentLatitude);
